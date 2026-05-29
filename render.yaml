@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: archive-center-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: PROJECT_MAIN_PROVIDER
+        value: openai
+      - key: PROJECT_MAIN_ENDPOINT
+        value: https://crof.ai/v1
+      - key: PROJECT_MAIN_API_KEY
+        sync: false
+      - key: PROJECT_MAIN_MODEL
+        value: gemma-4-31b-it
+      - key: PROJECT_SUPERVISOR_ENDPOINT
+        value: https://crof.ai/v1
+      - key: PROJECT_SUPERVISOR_API_KEY
+        sync: false
+      - key: PROJECT_SUPERVISOR_MODEL
+        value: gemma-4-31b-it
+      - key: PROJECT_CRITIC_PROVIDER
+        value: openai
+      - key: PROJECT_CRITIC_ENDPOINT
+        value: https://crof.ai/v1
+      - key: PROJECT_CRITIC_API_KEY
+        sync: false
+      - key: PROJECT_CRITIC_MODEL
+        value: gemma-4-31b-it
+      - key: PROJECT_EMBEDDING_PROVIDER
+        value: voyageai
+      - key: PROJECT_EMBEDDING_ENDPOINT
+        value: https://api.voyageai.com
+      - key: PROJECT_EMBEDDING_API_KEY
+        sync: false
+      - key: PROJECT_EMBEDDING_MODEL
+        value: voyage-3.5-lite
+      - key: DATABASE_URL
+        value: sqlite:///./memory.db
+      - key: CHROMA_SHADOW_PERSIST_DIRECTORY
+        value: .chroma_shadow
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: TOP_K_RESULTS
+        value: "5"
+      - key: SUPERVISOR_TIMEOUT
+        value: "30"
+      - key: CRITIC_TIMEOUT
+        value: "30"
+      - key: MAIN_TIMEOUT
+        value: "60"
